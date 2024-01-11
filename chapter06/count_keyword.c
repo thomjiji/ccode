@@ -21,6 +21,9 @@ struct key
     "const", 0,
     "continue", 0,
     "default", 0,
+    "int", 0,
+    "printf", 0,
+    "return", 0,
     /* ... */
     "unsigned", 0,
     "void", 0,
@@ -41,14 +44,15 @@ int main(void)
             if ((n = binsearch(word, keytab, NKEYS)) >= 0)
                 keytab[n].count++;
 
+    printf(" count keyword\n");
     for (n = 0; n < NKEYS; n++)
         if (keytab[n].count > 0)
-            printf("%4d %s\n", keytab[n].count, keytab[n].word);
+            printf("%6d %s\n", keytab[n].count, keytab[n].word);
 
     return 0;
 }
 
-// binsearch: find word in tab[0]...tab[n - 1]
+// binsearch: find word in tab[0]...tab[n - 1], return index if found
 int binsearch(char *word, struct key tab[], int n)
 {
     int cond;
@@ -96,13 +100,13 @@ int getword(char *word, int lim)
     return word[0];
 }
 
-/* get a (possibly pushed back) character */
+// get a (possibly pushed back) character
 int getch(void)
 {
     return (bufp > 0) ? buf[--bufp] : getchar();
 }
 
-/* push character back on input */
+// push character back on input
 void ungetch(int c)
 {
     if (bufp >= BUFSIZE)
