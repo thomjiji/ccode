@@ -3,14 +3,12 @@
 #define min(a, b) ((a) < (b) ? (a) : (b))
 #define max(a, b) ((a) > (b) ? (a) : (b))
 
-struct point
-{
+struct point {
     int x;
     int y;
 };
 
-struct rect
-{
+struct rect {
     struct point pt1;
     struct point pt2;
 };
